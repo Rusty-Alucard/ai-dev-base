@@ -118,6 +118,24 @@ Alternatively, you can fill in the `{{placeholder}}` values manually in `CLAUDE.
 
 ---
 
+## Keeping Up with Upstream
+
+When ai-dev-base is updated with new patterns or improvements, sync them into your project:
+
+```
+/sync-base
+```
+
+This reads `.base-sync.yml` (included in the template) to determine which files are base-derived, fetches the latest versions, and shows you what changed before applying. Project-specific files are never touched.
+
+You can also sync from a local copy:
+
+```
+/sync-base ~/workspace/ai-dev-base
+```
+
+---
+
 ## License
 
 MIT
