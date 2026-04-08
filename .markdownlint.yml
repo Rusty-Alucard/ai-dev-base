@@ -1,0 +1,18 @@
+# markdownlint configuration for ai-dev-base template repo
+# https://github.com/DavidAnson/markdownlint/blob/main/doc/Rules.md
+
+default: true
+
+# MD013: Line length — disabled because template content varies widely
+MD013: false
+
+# MD024: No duplicate headings — disabled because ADR template repeats
+# section names (Context, Decision, Rationale, Consequences) per entry
+MD024: false
+
+# MD033: Inline HTML — disabled, not needed for this template
+MD033: false
+
+# MD041: First line should be a top-level heading — disabled because
+# some files intentionally start with frontmatter or descriptive text
+MD041: false
