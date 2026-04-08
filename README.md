@@ -109,11 +109,12 @@ User corrections and lessons learned are written to `memory/` files and referenc
 ## How to Use
 
 1. **Fork or copy** this repository as the foundation for your new project.
-2. **Fill in `CLAUDE.md`** — replace every `{{placeholder}}` with project-specific values.
-3. **Customize `.claude/rules/coding-conventions.md`** — add your language toolchain, linters, and formatters.
-4. **Create agent personas** under `.claude/agents/` for any domain-specific roles your project needs.
-5. **Populate `context/project.md`** with the current phase, constraints, and team context.
-6. **Start working** — open Claude Code, describe your task to the PM agent, and let it delegate.
+2. **Run `/init-project`** in Claude Code — describe your project and all `{{placeholder}}` values will be filled in automatically.
+3. **Review the generated files** — refine any sections that need more detail.
+4. **Create agent personas** under `.claude/agents/` for any domain-specific roles your project needs (the init skill will suggest these).
+5. **Start working** — describe your task to the PM agent and let it delegate.
+
+Alternatively, you can fill in the `{{placeholder}}` values manually in `CLAUDE.md`, `.claude/rules/coding-conventions.md`, and `context/` files.
 
 ---
 
