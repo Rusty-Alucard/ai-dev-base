@@ -1,0 +1,18 @@
+# Base sync manifest
+# Files listed here are derived from ai-dev-base and will be overwritten during sync.
+# Project-specific files should NOT be listed here.
+#
+# Run /sync-base in Claude Code to pull the latest from upstream.
+
+upstream:
+  repo: "Rusty-Alucard/ai-dev-base"
+  branch: "main"
+
+# Base-derived files (synced from upstream)
+files:
+  - .claude/rules/multi-agent-workflow.md
+  - .claude/rules/agent-common.md
+  - .claude/rules/branch-protection.md
+  - .claude/rules/security.md
+  - .claude/agents/_template.md
+  - queue/README.md
