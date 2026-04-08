@@ -14,7 +14,7 @@
 
 ## Directory Structure
 
-```
+```text
 .
 ├── CLAUDE.md
 ├── .claude/
@@ -40,10 +40,12 @@ Add project-specific directories above as needed.
 {{current_phase_description}}
 
 ### In scope for this phase
+
 - {{in_scope_item_1}}
 - {{in_scope_item_2}}
 
 ### Out of scope (deferred)
+
 - {{out_of_scope_item_1}}
 - {{out_of_scope_item_2}}
 
@@ -72,6 +74,7 @@ cd infra/
 See `.claude/rules/coding-conventions.md` for the full reference.
 
 Project-specific additions:
+
 - **Primary language**: {{primary_language}} — formatter: `{{formatter}}`, linter: `{{linter}}`
 - **SQL dialect**: {{sql_dialect}}
 - **Commit message format**: `<type>: <subject>` (English)
@@ -141,7 +144,7 @@ Code blocks in design documents use a `lang # tag` convention:
 
 ### Implementation Flow
 
-```
+```text
 1. Fetch the design spec from the external source
 2. Extract structured spec blocks
 3. Implement according to the spec

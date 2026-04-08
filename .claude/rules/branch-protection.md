@@ -1,10 +1,12 @@
 # Branch Protection Rules
 
 ## Prohibited Actions
+
 - Direct commits to the `main` branch are not allowed
 - Direct pushes to the `main` branch are not allowed
 
 ## Required Practices
+
 - All work must be done on a feature branch
 - Branch names must follow the format: `<type>/<description>`
   - Examples: `feat/add-auth`, `fix/null-pointer`, `refactor/rename-module`, `docs/update-readme`

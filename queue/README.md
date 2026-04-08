@@ -49,6 +49,7 @@ estimated_hours: 2
 Files must be named: `NNNN-slug.yaml`
 
 Examples:
+
 - `0001-init-schema.yaml`
 - `0002-add-etl-script.yaml`
 - `0015-fix-type-error.yaml`

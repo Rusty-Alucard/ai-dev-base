@@ -11,15 +11,19 @@ Use this template when recording a new decision.
 - **Decider**: Name
 
 ### Context
+
 Why was this decision necessary?
 
 ### Decision
+
 What was decided?
 
 ### Rationale
+
 Why was this option chosen? What alternatives were considered?
 
 ### Consequences
+
 What are the implications and trade-offs of this decision?
 
 ---

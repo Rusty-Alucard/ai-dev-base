@@ -5,6 +5,7 @@
 {{list_languages_and_their_roles}}
 
 Examples:
+
 - Python — data processing scripts, ETL pipelines
 - SQL — DDL definitions, transformation queries
 - HCL — infrastructure as code (Terraform)
@@ -25,16 +26,19 @@ Examples:
 Example entries:
 
 ### Python
+
 - Formatter: `ruff format`
 - Linter: `ruff check`
 - Style: PEP 8; Google-style docstrings
 
 ### SQL
+
 - Formatter: `sqlfluff format`
 - Linter: `sqlfluff lint`
 - Style: keywords in UPPERCASE, identifiers in snake_case, 2-space indent
 
 ### HCL (Terraform)
+
 - Formatter: `terraform fmt`
 - Linter: `tflint`
 - Style: snake_case resource names; all variables must have a `description`
@@ -60,7 +64,8 @@ Example: Use Google-style docstrings for Python. Every public function must have
 - Body (optional): explain *why*, not *what*
 
 Examples:
-```
+
+```text
 feat: add pagination to user list endpoint
 fix: handle null value in invoice total calculation
 refactor: extract validation logic into separate module

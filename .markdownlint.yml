@@ -13,6 +13,19 @@ MD024: false
 # MD033: Inline HTML — disabled, not needed for this template
 MD033: false
 
+# MD036: Emphasis as heading — false positives on {{placeholder}} text
+MD036: false
+
+# MD040: Fenced code language — template code blocks may intentionally
+# omit language for generic examples
+MD040: false
+
 # MD041: First line should be a top-level heading — disabled because
 # some files intentionally start with frontmatter or descriptive text
 MD041: false
+
+# MD058: Blanks around tables — too strict for compact reference tables
+MD058: false
+
+# MD060: Table column style — pipe alignment is cosmetic and noisy
+MD060: false

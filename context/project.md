@@ -1,9 +1,11 @@
 # Project Context — Universal Context Template
 
 ## What
+
 {{What is this project? One paragraph.}}
 
 ## Why
+
 {{Why does this project exist? What problem does it solve?}}
 
 ## Who
@@ -15,12 +17,15 @@
 ## Constraints
 
 ### Technical Constraints
+
 {{List technical constraints — infrastructure, tools, limitations}}
 
 ### Operational Constraints
+
 {{List operational constraints — processes, policies, access}}
 
 ## Current State
+
 {{Describe current phase, what's done, what's in progress, what's blocked}}
 
 ### Phase Plan
@@ -30,6 +35,7 @@
 | {{phase}} | {{timeline}} | {{scope}} | {{criteria}} |
 
 ## Decisions
+
 Key technical/design decisions. Details in decisions.md.
 
 | ID | Decision | Rationale |
@@ -37,4 +43,5 @@ Key technical/design decisions. Details in decisions.md.
 | ADR-NNN | {{decision}} | {{rationale}} |
 
 ## Notes
+
 {{Additional context — future plans, known risks, dependencies}}

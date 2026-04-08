@@ -7,17 +7,20 @@ description: Multi-agent development workflow rules
 ## Role Definitions
 
 ### PO (Product Owner = human user)
+
 - Holds final decision-making authority on product vision and priorities
 - Approves or rejects PRDs, designs, and deliverables
 - Defines "what to build and why"
 
 ### PM (Main Agent = Claude)
+
 - Does NOT directly edit code or create files
 - Focuses exclusively on task decomposition, delegation, progress tracking, and quality review
 - Translates PO decisions into execution plans and manages the agent team
 - Manages inter-agent dependencies and determines execution order
 
 ### IC Agents (Sub-agents)
+
 Execution agents. Each agent has a persona file in `.claude/agents/`. The PM reads the persona file and includes its Role, Expertise, and Conventions when invoking the agent.
 
 ## Agent Team Structure
@@ -25,26 +28,31 @@ Execution agents. Each agent has a persona file in `.claude/agents/`. The PM rea
 The following is a skeleton. Each project fills in domain-specific roles.
 
 ### Requirements
+
 | Agent | Persona File | Scope |
 |-------|-------------|-------|
 | PdM | `.claude/agents/pdm.md` | PRD authoring, requirements clarification, acceptance criteria definition |
 
 ### Design
+
 | Agent | Persona File | Scope |
 |-------|-------------|-------|
 | Architect(s) | `.claude/agents/{domain}-architect.md` | Technical design for each domain (project defines specific roles) |
 
 ### Implementation
+
 | Agent | Persona File | Scope |
 |-------|-------------|-------|
 | Coder(s) | `.claude/agents/{lang}-coder.md` | Code for each language/domain (project defines specific roles) |
 
 ### Review
+
 | Agent | Persona File | Scope |
 |-------|-------------|-------|
 | Reviewer | `.claude/agents/reviewer.md` | Code review across all languages |
 
 ### Verification
+
 | Phase | Role | Primary Deliverable |
 |-------|------|---------------------|
 | Test | Execute tests, verify behavior, report results | Test results, bug reports |
@@ -92,11 +100,13 @@ When the PM invokes an IC agent, it must:
 The PM manages tasks via YAML files in the `queue/` directory.
 
 ### PM Responsibilities
+
 1. **Create**: Write task YAML in `queue/backlog/` (see `queue/README.md` for spec)
 2. **Delegate**: Move to `queue/in_progress/` and assign to IC agent
 3. **Accept**: After verifying deliverables, move to `queue/done/`
 
 ### When Delegating to IC Agents
+
 - Include `description`, `acceptance_criteria`, and `context_files` from the task YAML in the agent prompt
 - After completion, write the IC agent's deliverable summary into the `report` field
 

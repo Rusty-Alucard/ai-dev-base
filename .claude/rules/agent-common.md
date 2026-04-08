@@ -15,7 +15,7 @@ Review `.claude/commands/` before starting any task. If a relevant skill exists,
 
 When you identify a repeatable pattern with clear inputs and outputs:
 
-```
+```text
 Skill Proposal (New): {skill name}
 - Trigger: when and why this skill would be invoked
 - Input: required parameters or context
@@ -27,7 +27,7 @@ Skill Proposal (New): {skill name}
 
 When you notice a gap or deficiency in an existing skill during execution:
 
-```
+```text
 Skill Improvement: {target command name}
 - Current problem: what is missing or not working
 - Proposed change: specific improvement
@@ -35,6 +35,7 @@ Skill Improvement: {target command name}
 ```
 
 ### Do Not Propose
+
 - One-time tasks with no recurrence
 - Things already defined in `.claude/rules/` or project-level docs
 - Simple commands already automated by CI (e.g. a linter invocation)
@@ -45,6 +46,7 @@ When completing a task, record newly gained insights in your persona file's `Lea
 (`.claude/agents/{your-name}.md`).
 
 Record:
+
 - Project-specific constraints or gotchas (e.g. a field that is intentionally null in production)
 - Design decision rationale that is useful but does not warrant a formal ADR
 - Workarounds for known issues or environment quirks
