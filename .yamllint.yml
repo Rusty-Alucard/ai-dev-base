@@ -1,0 +1,26 @@
+# yamllint configuration for ai-dev-base template repo
+# https://yamllint.readthedocs.io/en/stable/configuration.html
+
+extends: default
+
+rules:
+  # Relaxed line length — template YAML may have long description strings
+  line-length:
+    max: 120
+    level: warning
+
+  # Allow both true/false and yes/no boolean values
+  # Template files may use various boolean representations as examples
+  truthy:
+    allowed-values: ["true", "false", "yes", "no"]
+    check-keys: false
+
+  # Allow comments with or without a space after #
+  comments:
+    min-spaces-from-content: 1
+
+  # Allow multiple blank lines between sections in template files
+  empty-lines:
+    max: 2
+    max-start: 0
+    max-end: 1
