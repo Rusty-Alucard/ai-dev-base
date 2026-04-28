@@ -31,3 +31,38 @@ If any of these are accidentally staged, remove them immediately and rotate the 
 - Use separate credentials or service accounts for different purposes (e.g. read-only reporting vs. write access)
 - Revoke credentials that are no longer in use
 - Avoid sharing credentials across services or team members; use per-identity credentials where possible
+
+## Claude Code Permissions Model
+
+Subagent autonomous execution is enabled via `.claude/settings.json`. The
+permissions layer enforces what subagents can write or read; combined with
+mandatory Reviewer gating, this enables Harness Engineering operation
+(subagents act autonomously, the Reviewer ensures quality).
+
+### File Hierarchy
+
+| File | Scope | Git | Purpose |
+|---|---|---|---|
+| `.claude/settings.json` | Team-shared | Committed | Write/Edit allow paths + secret-file deny patterns |
+| `.claude/settings.local.json` | Per-developer | Gitignored (global gitignore) | Individual machine commands (e.g. local SDK paths) |
+
+### Files Protected by the `deny` List
+
+`.claude/settings.json` should deny `Read`, `Edit`, and `Write` for all of:
+
+- `.env`, `.env.*`
+- `**/*-key.json`
+- `**/credentials.json`
+- `**/*.pem`, `**/*.key`
+
+This forms a **double defense** with the "Files That Must Never Be Committed"
+list above: `.gitignore` prevents commits, while the `deny` list prevents
+Claude Code itself from reading or modifying these files.
+
+### Maintenance Rules
+
+- Adding a new write-target directory to `allow` requires team consensus and
+  is committed via `.claude/settings.json`
+- Discovering a sensitive file pattern? Add it to `deny` immediately
+- Do not put `Write` or `Edit` entries in `.claude/settings.local.json`;
+  anything that should apply across the team belongs in `settings.json`
