@@ -14,5 +14,13 @@ files:
   - .claude/rules/agent-common.md
   - .claude/rules/branch-protection.md
   - .claude/rules/security.md
+  - .claude/rules/harness-garden.md
+  - .claude/rules/skill-activation.md
+  - .claude/templates/subagent-preamble.md
+  - .claude/settings.json
   - .claude/agents/_template.md
+  - .claude/agents/reviewer.md
   - queue/README.md
+  - bin/claude-usage.py
+  - config/claude-usage.yaml.example
+  - docs/claude-usage.md

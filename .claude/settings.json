@@ -1,0 +1,48 @@
+{
+  "permissions": {
+    "allow": [
+      "Edit(.claude/**)",
+      "Edit(queue/**)",
+      "Edit(context/**)",
+      "Edit(scripts/**)",
+      "Edit(tests/**)",
+      "Edit(docs/**)",
+      "Edit(bin/**)",
+      "Edit(config/**)",
+      "Edit(logs/**)",
+      "Edit(pyproject.toml)",
+      "Edit(requirements.txt)",
+      "Edit(README.md)",
+      "Edit(CLAUDE.md)",
+      "Write(.claude/**)",
+      "Write(queue/**)",
+      "Write(context/**)",
+      "Write(scripts/**)",
+      "Write(tests/**)",
+      "Write(docs/**)",
+      "Write(bin/**)",
+      "Write(config/**)",
+      "Write(logs/**)"
+    ],
+    "deny": [
+      "Read(.env)",
+      "Read(.env.*)",
+      "Read(**/*-key.json)",
+      "Read(**/credentials.json)",
+      "Read(**/*.pem)",
+      "Read(**/*.key)",
+      "Edit(.env)",
+      "Edit(.env.*)",
+      "Edit(**/*-key.json)",
+      "Edit(**/credentials.json)",
+      "Edit(**/*.pem)",
+      "Edit(**/*.key)",
+      "Write(.env)",
+      "Write(.env.*)",
+      "Write(**/*-key.json)",
+      "Write(**/credentials.json)",
+      "Write(**/*.pem)",
+      "Write(**/*.key)"
+    ]
+  }
+}

@@ -1,0 +1,51 @@
+# claude-usage.yaml — Configuration for claude-usage.py
+# Copy this file to config/claude-usage.yaml and customize for your setup.
+
+# Path to your Claude Code project JSONL directory.
+# Equivalent to ~/.claude/projects/<your-project-slug>/
+# Can be overridden with --project or CLAUDE_PROJECT_PATH env var.
+project_path: ~/.claude/projects/your-project-slug
+
+# Output directory for reports and charts.
+# Can be overridden with --output.
+output_dir: logs/claude-usage
+
+# Default analysis period in days.
+# Can be overridden with --period.
+default_period: 7
+
+# Agent display name aliases.
+# Maps agent_id (subagent_type) to a human-readable label used in charts.
+# Leave empty {} to use raw subagent_type values.
+agent_aliases: {}
+  # general-purpose: "General"
+  # Explore: "Explorer"
+  # Plan: "Planner"
+
+# Model pricing (USD per 1M tokens). Used to estimate weekly cost in CTX/Cost section.
+# These values reflect Anthropic list pricing — verify before relying on cost figures.
+pricing:
+  opus:   {input: 15.0, output: 75.0}   # $/1M tokens
+  sonnet: {input: 3.0,  output: 15.0}
+  haiku:  {input: 0.8,  output: 4.0}
+
+# AI Insight generation. Requires claude CLI in PATH.
+# When enabled, spawns a claude -p call after report generation and appends
+# a weekly insight section to the markdown report.
+ai_insight:
+  enabled: true
+
+# Learnings aggregation from agent persona files.
+# Parses ## Learnings sections in .claude/agents/*.md and extracts #tag occurrences.
+# When enabled, adds Section 7 (Learnings gardening) to the weekly report.
+learnings:
+  enabled: true
+  root: ".claude/agents"       # path to persona .md files
+  promotion_threshold: 3       # tags appearing >= N times are listed as promotion candidates
+
+  # Optional: map tags to target rule files for promotion suggestions.
+  # When a tag reaches the promotion threshold, the report will suggest
+  # promoting it to the specified rules file.
+  # promote_targets:
+  #   "#mytag": ".claude/rules/mytag-patterns.md"
+  #   "#anothertag": ".claude/rules/another-patterns.md"

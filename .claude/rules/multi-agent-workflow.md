@@ -93,7 +93,9 @@ When the PM invokes an IC agent, it must:
 1. Read the persona file: `.claude/agents/{agent-name}.md`
 2. Include common rules: `.claude/rules/agent-common.md` (Skill proposals, Learnings, report format)
 3. Add task-specific context: target files, requirements, expected deliverables
-4. On completion, record new insights in the persona file's `Learnings` section
+4. **Paste the full contents of `.claude/templates/subagent-preamble.md` at the top of the prompt.** Task-specific context follows below the preamble. This is mandatory — it is the mechanism that enforces the skill activation gate.
+5. Specify the `model` parameter explicitly (see "Model Selection Policy" below)
+6. On completion, record new insights in the persona file's `Learnings` section
 
 ## Task Queue Integration (`queue/`)
 
@@ -114,13 +116,28 @@ The PM manages tasks via YAML files in the `queue/` directory.
 
 Select the model based on task complexity, not convenience.
 
-| Model Tier | Examples | Appropriate Tasks |
-|------------|----------|-------------------|
-| Lightweight (e.g. Haiku) | Search, listing, organizing grep results | Research, file discovery, output classification |
-| Mid-tier (e.g. Sonnet) | Implementation from clear specs, mechanical refactoring, code review | Coding with well-defined requirements, review |
-| Heavy (e.g. Opus) | PM judgment, ambiguous requirements, complex debugging | Architecture decisions, design, unclear problem framing |
+### Reasoning Sandwich — Phase-to-Model Mapping
 
-Default to the lightest model that can reliably complete the task.
+| Phase | Typical Agents | Recommended Model | Rationale |
+|---|---|---|---|
+| Plan / Design | PdM, Architect(s) | `claude-opus` | Trade-off analysis and ambiguity resolution benefit from deeper reasoning |
+| Review | Reviewer | `claude-opus` | Multi-axis scoring and cross-cutting quality judgment |
+| Implementation | Coder(s) | `claude-sonnet` | Specs are clear; deep reasoning is not required |
+| Search / Research | Grep/Read-only agents | `claude-haiku` | File lookup and reference confirmation only |
+
+Model family names (`claude-opus`, `claude-sonnet`, `claude-haiku`) are generic;
+use the current stable version identifiers supported by your Claude Code install.
+
+### Principle: The `model` Parameter Must Not Be Omitted
+
+The PM **must specify** the `model` parameter on every Agent launch. When the
+parameter is omitted, the session falls back to the heaviest model, which
+drives unnecessary cost on implementation and research tasks. When in doubt,
+default to `sonnet`; escalate to `opus` only for planning or review.
+
+In practice, teams that skip this rule see a large majority of token spend
+concentrated on the heaviest model even though most work is well within
+`sonnet` capability — defeating the purpose of the matrix above.
 
 ## Principles
 
@@ -128,3 +145,21 @@ Default to the lightest model that can reliably complete the task.
 - Independent phases (Test, Lint) should run in parallel for efficiency
 - Each agent must receive sufficient context: target files, conventions, expected deliverables
 - If an agent's output has issues, issue correction instructions and re-run rather than editing directly
+- **Reviewer is a mandatory gate.** The PM must not skip Review. Work may not
+  proceed to Verify (Test + Lint) until the Reviewer approves (overall score
+  ≥ 4.0; see `.claude/agents/reviewer.md` for the scoring rubric).
+
+## Permissions Model and Autonomous Execution
+
+Subagent autonomous execution (write/edit) is enabled via
+`.claude/settings.json` (team-shared, committed). See
+`.claude/rules/security.md` ("Claude Code Permissions Model") for details.
+
+### PM Responsibilities (Permissions)
+
+- If a subagent is blocked on permissions, updating `.claude/settings.json`
+  so the subagent can execute autonomously is preferable to the PM editing
+  files directly. Direct edits are a last resort.
+- When a new write-target directory appears, add it to `allow` in
+  `.claude/settings.json` before delegating.
+- If a sensitive file pattern is discovered, add it to `deny` immediately.
